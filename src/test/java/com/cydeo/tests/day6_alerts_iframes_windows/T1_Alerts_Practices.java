@@ -50,4 +50,44 @@ public class T1_Alerts_Practices {
         Assert.assertEquals(actualText,exceptedText,"Actual result text is not as excepted!");
 
     }
+
+    @Test
+    public void alert_test2(){
+
+        //3. Click to “Click for JS Confirm” button
+        WebElement clickForJsConfirmButton= driver.findElement(By.xpath("//button[.='Click for JS Confirm']"));
+        clickForJsConfirmButton.click();
+
+        //4. Click to OK button from the alert
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+
+        //5. Verify “You clicked: Ok” text is displayed.
+        WebElement resultText= driver.findElement(By.xpath("//p[@id='result']"));
+        String exceptedText="You clicked: Ok";
+        String actualText=resultText.getText();
+
+        Assert.assertEquals(actualText,exceptedText,"Actual result text is not as excepted!");
+    }
+
+    @Test
+    public void alert_test3(){
+        //3. Click to “Click for JS Prompt” button
+        WebElement clickForJSPrompt= driver.findElement(By.xpath("//button[.='Click for JS Prompt']"));
+        clickForJSPrompt.click();
+
+        //4. Send “hello” text to alert
+        Alert alert= driver.switchTo().alert();
+        alert.sendKeys("hello");
+
+        //5. Click to OK button from the alert
+        alert.accept();
+        //6. Verify “You entered: hello” text is displayed.
+        WebElement resultText=driver.findElement(By.xpath("//p[@id='result']"));
+
+        String exceptedText="You entered: hello";
+        String actualText=resultText.getText();
+
+    }
+
 }
